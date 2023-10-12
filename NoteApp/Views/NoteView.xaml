@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:NoteApp.viewModels"
+             x:Class="NoteApp.Views.NoteView">
+    
+    <ContentView.BindingContext>
+        <viewModel:NoteViewModel/>
+    </ContentView.BindingContext>
+    
+<VerticalStackLayout>
+        <Frame >
+        <VerticalStackLayout Spacing="5" >
+            <Label 
+          FontSize="Medium"
+          Text="Welcome to Note Data"
+          HorizontalOptions="Start" 
+          />
+
+
+            <Label 
+     FontSize="Small"
+     Text="Note title:"
+     HorizontalOptions="Start" 
+     />
+            <Entry
+                Text="{Binding NoteTitle}"
+                Placeholder="Enter title here.."
+                FontSize="Medium"
+             />
+
+
+            <Label 
+              FontSize="Small"
+              Text="Note description:"
+              HorizontalOptions="Start" 
+            />
+            <Editor
+                Text="{Binding NoteDescription}"
+                Placeholder="Enter description here..."
+              FontSize="Medium"
+              HeightRequest="200"
+             />
+            
+            <Button Command="{Binding AddNoteCommand}" Text="Add Note"/>
+        </VerticalStackLayout> 
+        </Frame>
+
+
+        <ListView ItemsSource="{Binding NoteCollection}" SelectedItem="{Binding SelectedNote}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell  Text="{Binding Title}" Detail="{Binding Description}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    <HorizontalStackLayout Spacing="30" Margin="10" >
+        <Button Command="{Binding RemoveNoteCommand}" Text="Remove Note"/>
+        <Button Command="{Binding EditNoteCommand}" Text="Edite Note"/>
+    </HorizontalStackLayout>
+
+  </VerticalStackLayout>
+</ContentView>
