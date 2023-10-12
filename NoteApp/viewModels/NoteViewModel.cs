@@ -11,7 +11,6 @@ namespace NoteApp.viewModels
 
 
 
-
         //fields
         private string _noteTitle;
         private string _noteDescription;
